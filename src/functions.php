@@ -45,8 +45,10 @@ function vk_post($message, $params) {
   list($result, $data) = vk_method('wall.post', array(
     'access_token' => $params['access_token'],
     'owner_id' => '-'. $message['group_id'],
-    'message' => $message['text'],
-    'attachments' => $message['attachments'],
+    //'title' => $message['title'],
+    'message' => $message['title'] . "\n\n" . $message['text'],
+    //'message' => $message['text'],
+    'attachments' => $message['url'],
   ) + $options['vk_post']);
   return array($result, $data);
 }
