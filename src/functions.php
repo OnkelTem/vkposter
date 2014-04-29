@@ -75,10 +75,10 @@ function vk_method($method, $params) {
   $result = array();
 
   if ($response === FALSE) {
-    $result = array('success' => FALSE) + array('data' => array(
+    $result = array(FALSE, array(array(
       'errno' => curl_errno($curl),
       'error' => curl_error($curl),
-    ));
+    )));
   }
   else {
     $result = array(TRUE, reset(json_decode($response, TRUE)));
