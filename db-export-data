@@ -1,0 +1,27 @@
+#!/bin/sh
+
+. ./project.conf
+
+POSTFIX=$1
+
+# regexp switch to sed by system type
+if [ "`uname`" = "Linux" ]; then
+        sed_ex_switch="-r"
+else
+        sed_ex_switch="-E"
+fi
+
+if [ -z "$PASSWORD" ]; then
+  echo -n Password:
+  stty -echo
+  read -r PASSWORD
+  stty echo
+fi
+
+echo -n "Exporting... "
+
+
+time mysqldump -u $USER -h $HOST -p$PASSWORD $DATABASE \
+    --opt \
+    | gzip > DB-${SITE}-${HOSTCODE}-`date "+%Y-%m-%d"`.sql.gz
+

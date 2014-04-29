@@ -1,0 +1,8 @@
+# name of the project. Will be used in database dumps name
+SITE=vkposter
+DATABASE=dbname
+USER=dbuser
+HOST=localhost
+PASSWORD=dbpassword
+# suffix for database dumps
+HOSTCODE=LO

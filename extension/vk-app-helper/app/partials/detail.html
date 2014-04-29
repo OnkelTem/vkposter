@@ -1,0 +1,16 @@
+
+<form name="AppForm" role="form">
+  <div class="form-group">
+    <label>App ID</label>
+    <input type="text" name="name" ng-model="app.id" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Secret Key</label>
+    <input type="text" name="secret" ng-model="app.secret" class="form-control">
+  </div>
+
+  <br>
+  <a href="#/" class="btn">Cancel</a>
+  <button data-save-app-button class="btn btn-primary">Save</button>
+  <button data-delete-app-button ng-show="edit" class="btn btn-danger">Delete</button>
+</form>

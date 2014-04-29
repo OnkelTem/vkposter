@@ -1,0 +1,11 @@
+/dev
+*.gz
+_initdb.sh
+*.sublime-*
+/project.conf
+/apps.json
+/*-host
+.settings/
+.buildpath
+.project
+/setacl

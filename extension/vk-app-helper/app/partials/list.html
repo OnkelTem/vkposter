@@ -1,0 +1,43 @@
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <th>App ID</th>
+        <th>Name</th>
+        <th>Secret Key</th>
+        <th>Groups</th>
+        <th>Token</th>
+        <th>User ID</th>
+        <th>
+          <a href="#/new" tooltip="New"><i class="glyphicon glyphicon-plus-sign"></i></a>
+          <a href="#/export" tooltip="Export"><i class="glyphicon glyphicon-export"></i></a>
+        </th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="app in apps">
+          <td>{{app.id}}</td>
+          <td>{{app.name}}</td>
+          <td>{{app.secret | characters:10 }}</td>
+          <td>
+            <div ng-repeat="group in app.groups">{{group.id}}: {{group.name}}</div>
+          </td>
+          <td><button popover="{{app.token}}" class="btn btn-default" popover-placement="bottom" ng-show="app.token">{{app.token | characters:10 }}</button></td>
+          <td>{{app.user_id}}</td>
+          <td>
+            <a ui-sref="edit({ App: $index })" tooltip="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+            <!--a ng-click="removeApp($index)" title="Remove"><i class="glyphicon glyphicon-remove"></i></a-->
+            <span tooltip="ReConnect"><a href="" connect-app-button app-index="$index"><i class="glyphicon glyphicon-{{app.token ? 'refresh' : 'transfer'}}"></i></a></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-default">
+      <a href="#/new" tooltip="New"><i class="glyphicon glyphicon-plus-sign"></i> New</a>
+    </button>
+    <button type="button" class="btn btn-default">
+      <a href="#/export" tooltip="Export"><i class="glyphicon glyphicon-export"></i> Export</a>
+    </button>
+  </div>
+</div>
+
