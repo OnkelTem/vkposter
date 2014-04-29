@@ -1,27 +1,26 @@
 <?php
 
-define('MIN_VERSION', 5.3);
-round(phpversion(), 10) >= MIN_VERSION || die('Обновите PHP до ' . MIN_VERSION . ' или выше!');
+/*
+ * Host specific configuration
+ */
 
-$dbhost = 'localhost';
-$dbport = '';
-$dbname = 'dbname';
-$dbuser = 'dbuser';
-$dbpasswd = 'dbpassword';
-$tasks_table = 'tasks';
+$config = array(
+  // Copy-and-edit any $options items from common.php to override
 
-// Кол-во заданий обрабатываемых за один запуск скрипта
-$tasks_limit = 1;
+  // Database configuration
+  'dbhost' => 'localhost',
+  'dbport' => '',
+  'dbname' => 'dbname',
+  'dbuser' => 'dbuser',
+  'dbpasswd' => 'dbpassword',
 
-// Путь к файлу с экспортированной информацией о приложениях
-$apps_json = '../apps.json';
-
-// Некоторые дефолтные настройки для размещения в группах
-$vk_message_defaults =  array(
-  'from_group' => 1,      // постить от лица группы (1) или от лица юзера
-  'signed' => 0,          // добавлять ли подпись
-  'friends_only' => 0,    // только для друзей
-  'expires_in' => 0,
-  'attachments' => '',
+  // How many tasks to execute per invocation
+  //'tasks_limit' => 1;
 );
 
+$options = array(
+  // Copy-and-edit any $options items from common.php to override
+
+  // Uncomment to disable IPv6
+  // CURLOPT_IPRESOLVE       => CURL_IPRESOLVE_V4
+);

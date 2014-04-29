@@ -40,34 +40,24 @@ function vk_groupinfo($group_id, $params) {
  * Ф-я размещает пост в заданной группе
  */
 function vk_post($message, $params) {
+  global $options;
+
   list($result, $data) = vk_method('wall.post', array(
     'access_token' => $params['access_token'],
     'owner_id' => '-'. $message['group_id'],
     'message' => $message['text'],
-    'from_group' => $message['from_group'],
-    'signed' => $message['signed'],
-    'friends_only' => $message['friends_only'],
     'attachments' => $message['attachments'],
-    'expires_in' => '0',
-  ));
+  ) + $options['vk_post']);
   return array($result, $data);
 }
 
 function vk_method($method, $params) {
+  global $options;
+
   $url = 'https://api.vk.com/method/'.$method.'?';
   $curl = curl_init();
 
-  curl_setopt_array($curl, array(
-    CURLOPT_POST            => true,
-    CURLOPT_RETURNTRANSFER  => true,
-    CURLOPT_HEADER          => false,
-    CURLOPT_SSL_VERIFYPEER  => true,
-    CURLOPT_SSL_VERIFYHOST  => 2,
-    //CURLOPT_CAINFO      => getcwd()."/components/com_socialcrossposting/helpers/cacert.pem",
-    //CURLOPT_CAPATH      => getcwd()."/components/com_socialcrossposting/helpers/",
-    CURLOPT_ENCODING        => "",
-    CURLOPT_USERAGENT       => "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0",
-  ));
+  curl_setopt_array($curl, $options['curl_options']);
   curl_setopt($curl, CURLOPT_URL, $url);
   curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
 
