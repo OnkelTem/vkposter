@@ -1,4 +1,4 @@
-# VK Poster README
+# VK Poster
 
 Приложение состоит из двух частей:
 
